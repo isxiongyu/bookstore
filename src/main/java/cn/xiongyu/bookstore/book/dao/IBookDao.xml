@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xiongyu.bookstore.book.dao.IBookDao">
+	<insert id="addBook">
+		insert into book(bid, bname, bprice, author, rest, img, cid) value(#{bid}, #{bname}, #{bprice}, #{author}, #{rest}, #{img}, #{category.cid})
+	</insert>
+	<delete id="delBookById">
+		delete from book where bid=#{xxx}
+	</delete>
+	<update id="modBook">
+		update book set bname=#{bname}, bprice=#{bprice}, author=#{author}, rest=#{rest}, img=#{img}, cid=#{category.cid} where bid=#{bid}
+	</update>
+	
+	<!-- 多表查询 -->
+	<select id="selCategory" resultType="Category">
+		select cid, cname from category where cid=#{xxx}
+	</select>
+	<resultMap type="Book" id="categoryMapper">
+		<id column="bid" property="bid"/>
+		<result column="bname" property="bname"/>
+		<result column="bprice" property="bprice"/>
+		<result column="author" property="author"/>
+		<result column="rest" property="rest"/>
+		<result column="img" property="img"/>
+		<association property="category" 
+					 javaType="Category"
+					 select="selCategory"
+					 column="cid"/>
+	</resultMap>
+	<select id="selBookById" resultMap="categoryMapper">
+		select bid, bname, bprice, author, rest, img, cid from book where bid=#{xxx}
+	</select>
+	
+	<select id="selAllBook" resultMap="categoryMapper">
+		select bid, bname, bprice, author, rest, img, cid from book
+	</select>
+	
+	<select id="selBookByCategory" resultMap="categoryMapper">
+		select bid, bname, bprice, author, rest, img, cid from book where cid=#{xxx}
+	</select>
+</mapper>

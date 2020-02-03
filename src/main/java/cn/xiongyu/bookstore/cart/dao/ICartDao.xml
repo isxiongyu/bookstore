@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xiongyu.bookstore.cart.dao.ICartDao">
+	<insert id="addCart">
+		insert into cart(cartId, bid, num, subtotal, uid) value(#{cartId}, #{book.bid}, #{num}, #{subtotal}, #{user.uid})
+	</insert>
+	<update id="modCart">
+		update cart set cartId=#{cartId}, bid=#{book.bid}, num=#{num}, subtotal=#{subtotal}, uid=#{user.uid} where cartId=#{cartId}
+	</update>
+	
+	<!-- 多表连接查询 -->
+
+	<select id="selCategory" resultType="Category">
+		select cid, cname from category where cid=#{xxx}
+	</select>
+	
+	<resultMap type="Book" id="categoryMapper">
+		<id column="bid" property="bid"/>
+		<result column="bname" property="bname"/>
+		<result column="bprice" property="bprice"/>
+		<result column="author" property="author"/>
+		<association property="category" 
+					 javaType="Category"
+					 select="selCategory"
+					 column="cid"/>
+	</resultMap>
+	
+	<select id="selBook" resultMap="categoryMapper">
+		select bid, bname, bprice, author, rest, cid from book where bid=#{xxx}
+	</select>
+	<select id="selUser" resultType="User">
+		select * from user where uid=#{xxx}
+	</select>
+	
+	<resultMap type="Cart" id="bookUserMapper">
+		<id column="cartId" property="cartId"/>
+		<result column="num" property="num"/>
+		<association property="book" 
+					 javaType="Book"
+					 select="selBook"
+					 column="bid"/>
+		<association property="user" 
+					 javaType="User"
+					 select="selUser"
+					 column="uid"/>
+	</resultMap>
+	<!-- 根据uid与bid联合查询 -->
+	<select id="selCart" resultMap="bookUserMapper">
+		select cartId, bid, num, subtotal, uid from cart where bid=#{book.bid} and uid=#{user.uid}
+	</select>
+	<!-- 根据uid进行查询 -->
+	<select id="selCartByUid" resultMap="bookUserMapper">
+		select cartId, bid, num, subtotal, uid from cart where uid=#{xxx}
+	</select>
+	
+	<delete id="delCartByCartId">
+		delete from cart where cartId=#{xxx}
+	</delete>
+	<delete id="emptyCartByUid">
+		delete from cart where uid=#{xxx}
+	</delete>
+	
+</mapper>

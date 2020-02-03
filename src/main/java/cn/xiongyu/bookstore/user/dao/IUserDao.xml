@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xiongyu.bookstore.user.dao.IUserDao">
+	<insert id="addUser">
+		insert into user(uid, username, password, phone, email, code, state) value(#{uid}, #{username}, #{password}, #{phone}, #{email}, #{code}, #{state})
+	</insert>
+	<delete id="delUser">
+		delete from user where uid=#{uid}
+	</delete>
+	<update id="modUser">
+		update user set username=#{username}, password=#{password}, phone=#{phone}, email=#{email}, state=#{state} where uid=#{uid}
+	</update>
+	<select id="selUserByUsername" resultType="User">
+		select * from user where username=#{username}
+	</select>
+	<select id="selUserByCode" resultType="User">
+		select * from user where code=#{xxx}
+	</select>
+	<select id="selUserByEmail" resultType="User">
+		select * from user where email=#{xxx}
+	</select>
+	<select id="selUserByPhone" resultType="User">
+		select * from user where phone=#{xxx}
+	</select>
+	<select id="selUserById" resultType="User">
+		select * from user where uid=#{xxx}
+	</select>
+</mapper>

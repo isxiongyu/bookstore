@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xiongyu.bookstore.order.dao.IOrderItemDao">
+	
+	<insert id="addOrderItem">
+		insert into orderitem(iid, bid, num, subtotal, oid) value(#{iid}, #{book.bid}, #{num}, #{subtotal}, #{oid})
+	</insert>
+	
+	<!-- 多表连接查询 -->
+
+	<select id="selCategory" resultType="Category">
+		select cid, cname from category where cid=#{xxx}
+	</select>
+	
+	<resultMap type="Book" id="categoryMapper">
+		<id column="bid" property="bid"/>
+		<result column="bname" property="bname"/>
+		<result column="bprice" property="bprice"/>
+		<result column="author" property="author"/>
+		<association property="category" 
+					 javaType="Category"
+					 select="selCategory"
+					 column="cid"/>
+	</resultMap>
+
+	
+	<select id="selBook" resultMap="categoryMapper">
+		select bid, bname, bprice, author, rest, cid from book where bid=#{xxx}
+	</select>
+	
+	<resultMap type="OrderItem" id="BookMapper">
+		<id column="iid" property="iid"/>
+		<result column="num" property="num"/>
+		<result column="subtotal" property="subtotal"/>
+		<result column="oid" property="oid"/>
+		<association property="book" 
+					 javaType="Book"
+					 select="selBook"
+					 column="bid"/>
+	</resultMap>
+	<select id="selOrderItemByOid" resultMap="BookMapper">
+		select iid, bid, num, subtotal, oid from orderitem where oid=#{xxx}
+	</select>
+	
+</mapper>

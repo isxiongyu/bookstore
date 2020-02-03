@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<package name="cn.xiongyu.bookstore.user.domain"/>
+		<package name="cn.xiongyu.bookstore.book.domain"/>
+		<package name="cn.xiongyu.bookstore.cart.domain"/>
+		<package name="cn.xiongyu.bookstore.order.domain"/>
+		<package name="cn.xiongyu.bookstore.admin.domain"/>
+	</typeAliases>
+	<mappers>
+		<package name="cn.xiongyu.bookstore.user.dao"/>
+		<package name="cn.xiongyu.bookstore.book.dao"/>
+		<package name="cn.xiongyu.bookstore.cart.dao"/>
+		<package name="cn.xiongyu.bookstore.order.dao"/>
+		<package name="cn.xiongyu.bookstore.admin.dao"/>
+	</mappers>
+</configuration>

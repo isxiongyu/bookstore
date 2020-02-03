@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xiongyu.bookstore.order.dao.IOrderDao">
+	
+	<insert id="addOrder">
+		<!-- 这里order表与mysql关键字重合，故将order改为orders -->
+		insert into orders(oid, orderTime, total, state, uid) value(#{oid}, #{orderTime}, #{total}, #{state}, #{user.uid})
+	</insert>
+	<update id="modOrder">
+		update orders set orderTime=#{orderTime}, total=#{total}, state=#{state}, uid=#{user.uid} where oid=#{oid}
+	</update>
+	<delete id="delOrder">
+		delete from orders where oid=#{oid}
+	</delete>
+	<!-- 多表连接查询 -->
+
+	<select id="selCategory" resultType="Category">
+		select cid, cname from category where cid=#{xxx}
+	</select>
+	
+	<resultMap type="Book" id="categoryMapper">
+		<id column="bid" property="bid"/>
+		<result column="bname" property="bname"/>
+		<result column="bprice" property="bprice"/>
+		<result column="author" property="author"/>
+		<association property="category" 
+					 javaType="Category"
+					 select="selCategory"
+					 column="cid"/>
+	</resultMap>
+	
+	<select id="selUser" resultType="User">
+		select * from user where uid=#{xxx}
+	</select>
+	
+	<resultMap type="Order" id="userMapper">
+		<id column="oid" property="oid"/>
+		<result column="orderTime" property="orderTime"/>
+		<result column="total" property="total"/>
+		<result column="state" property="state"/>
+		<association property="user" 
+					 javaType="User"
+					 select="selUser"
+					 column="uid"/>
+	</resultMap>
+	<select id="selOrderByUid" resultMap="userMapper">
+		select oid, orderTime, total, state, uid, address from orders where uid=#{xxx}
+	</select>
+	<select id="selOrderByOid" resultMap="userMapper">
+		select oid, orderTime, total, state, uid, address from orders where oid=#{xxx}
+	</select>
+	<select id="selAllOrder" resultMap="userMapper">
+		select oid, orderTime, total, state, uid, address from orders
+	</select>
+	
+</mapper>

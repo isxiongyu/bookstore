@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xiongyu.bookstore.book.dao.ICategoryDao">
+	<insert id="addCategory">
+		insert into category(cname) value(#{cname})
+	</insert>
+	<delete id="delCategoryById">
+		delete from category where cid=#{xxx}
+	</delete>
+	<update id="modCategory">
+		update category set cname=#{cname}where cid=#{cid}
+	</update>
+	<select id="selCategoryById" resultType="Category">
+		select cid, cname from category where cid=#{xxx}
+	</select>
+	<select id="selCategoryByName" resultType="Category">
+		select cid, cname from category where cname=#{xxx}
+	</select>
+	<select id="selAllCategory" resultType="Category">
+		select cid, cname from category
+	</select>
+</mapper>
