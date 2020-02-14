@@ -4,6 +4,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true"/>
+	</settings>
 	<typeAliases>
 		<package name="cn.xiongyu.bookstore.user.domain"/>
 		<package name="cn.xiongyu.bookstore.book.domain"/>

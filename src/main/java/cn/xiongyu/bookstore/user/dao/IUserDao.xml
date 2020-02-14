@@ -4,6 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.xiongyu.bookstore.user.dao.IUserDao">
+	<!-- 使用Redis二级缓存 -->
+	<cache type="cn.xiongyu.bookstore.cache.RedisCache"/>
 	<insert id="addUser">
 		insert into user(uid, username, password, phone, email, code, state) value(#{uid}, #{username}, #{password}, #{phone}, #{email}, #{code}, #{state})
 	</insert>

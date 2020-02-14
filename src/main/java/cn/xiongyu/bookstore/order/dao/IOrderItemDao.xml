@@ -4,7 +4,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.xiongyu.bookstore.order.dao.IOrderItemDao">
-	
+
+	<!-- 使用Redis二级缓存 -->
+	<cache type="cn.xiongyu.bookstore.cache.RedisCache"/>
 	<insert id="addOrderItem">
 		insert into orderitem(iid, bid, num, subtotal, oid) value(#{iid}, #{book.bid}, #{num}, #{subtotal}, #{oid})
 	</insert>

@@ -12,7 +12,9 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/aop 
         http://www.springframework.org/schema/aop/spring-aop.xsd">
-	
+
+<!--	<import resource="spring-db.xml"/>-->
+<!--	<import resource="spring-redis.xml"/>-->
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:mybatis.xml"/>

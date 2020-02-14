@@ -1,7 +1,9 @@
 package cn.xiongyu.bookstore.book.domain;
 
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
 	private String bid;
 	private String bname;
 	private float bprice;
