@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="cn.xiongyu.bookstore.order.dao.IOrderDao">
 
 	<!-- 使用Redis二级缓存 -->
-	<cache type="cn.xiongyu.bookstore.cache.RedisCache"/>
+	<cache type="cn.xiongyu.bookstore.common.cache.RedisCache"/>
 	<insert id="addOrder">
 		<!-- 这里order表与mysql关键字重合，故将order改为orders -->
 		insert into orders(oid, orderTime, total, state, uid) value(#{oid}, #{orderTime}, #{total}, #{state}, #{user.uid})

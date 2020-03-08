@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="cn.xiongyu.bookstore.book.dao.IBookDao">
 	<!-- 使用Redis二级缓存 -->
-	<cache type="cn.xiongyu.bookstore.cache.RedisCache"/>
+	<cache type="cn.xiongyu.bookstore.common.cache.RedisCache"/>
 	<insert id="addBook">
 		insert into book(bid, bname, bprice, author, rest, img, cid) value(#{bid}, #{bname}, #{bprice}, #{author}, #{rest}, #{img}, #{category.cid})
 	</insert>

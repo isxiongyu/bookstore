@@ -20,6 +20,7 @@ public class AdminServiceImpl implements IAdminService {
 		}else if (! getAdmin.getApassword().equals(admin.getApassword())) {			
 			throw new AdminAccessPermissionException("用户名不存在或者密码错误");
 		}
+		System.out.println("登录");
 	}
 
 }

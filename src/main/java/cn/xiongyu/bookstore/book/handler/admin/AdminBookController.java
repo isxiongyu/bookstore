@@ -136,7 +136,7 @@ public class AdminBookController {
 		}
 		ModelAndView mv = new ModelAndView();
 		List<Category> categories = categoryService.selAllCategory();;
-		if(!(cid == null || cid == "")){			
+		if(!(cid == null || cid.equals(""))){
 			Category category = categoryService.selCategoryById(Integer.parseInt(cid));
 			mv.addObject("category", category);
 		}

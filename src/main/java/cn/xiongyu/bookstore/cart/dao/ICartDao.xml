@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="cn.xiongyu.bookstore.cart.dao.ICartDao">
 	<!-- 使用Redis二级缓存 -->
-	<cache type="cn.xiongyu.bookstore.cache.RedisCache"/>
+	<cache type="cn.xiongyu.bookstore.common.cache.RedisCache"/>
 	<insert id="addCart">
 		insert into cart(cartId, bid, num, subtotal, uid) value(#{cartId}, #{book.bid}, #{num}, #{subtotal}, #{user.uid})
 	</insert>

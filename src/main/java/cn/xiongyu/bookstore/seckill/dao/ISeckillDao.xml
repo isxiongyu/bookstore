@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xiongyu.bookstore.seckill.dao.ISeckillDao">
+<!--	&lt;!&ndash; 使用Redis二级缓存 &ndash;&gt;-->
+<!--	<cache type="cn.xiongyu.bookstore.common.cache.RedisCache"/>-->
+	<update id="reduceBook">
+		update seckillBook set seckill_number=seckill_number-1, version=version+1 where seckill_id=#{ooo}
+	</update>
+
+	<resultMap id="SeckillBookMap" type="SeckillBook">
+		<id column="seckill_id" property="seckillId"/>
+		<result column="seckill_name" property="seckillName"/>
+		<result column="seckill_number" property="seckillNumber"/>
+		<result column="version" property="version"/>
+	</resultMap>
+	<select id="selBookById" resultMap="SeckillBookMap">
+		select seckill_id, seckill_name, seckill_number, version from seckillBook where seckill_id=#{xxx}
+	</select>
+	<select id="selNumById" resultType="int">
+		select seckill_number from seckillBook where seckill_id=#{xxx}
+	</select>
+	<update id="updateDBO">
+		update seckillBook set seckill_number=seckill_number-1, version=version+1 where seckill_id=#{param1} and version=#{param2}
+	</update>
+	<update id="updateDBP">
+		update seckillBook set seckill_number=seckill_number-1, version=version+1 where seckill_id=#{param1} and seckill_number > 0
+	</update>
+</mapper>

@@ -37,7 +37,7 @@ public class AdminCategoryController extends ExceptionController {
 		return mv;
 	}
 	@RequestMapping("/addCategoryLoadLeft.do")
-	public ModelAndView addCategoryLoadLeft(HttpServletRequest request) throws AdminAccessPermissionException{
+	public ModelAndView addCategoryLoadLeft(HttpServletRequest request) throws AdminAccessPermissionException {
 		Admin admin = (Admin)request.getSession().getAttribute("admin");
 		if(admin == null){
 			throw new AdminAccessPermissionException("您还没有登录，或者登录身份已失效");

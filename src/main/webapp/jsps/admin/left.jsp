@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<meta http-equiv="refresh"content="5">
+<%--	<meta http-equiv="refresh"content="5">--%>
   </head>
   
   <body>

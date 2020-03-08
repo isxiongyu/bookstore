@@ -71,7 +71,11 @@
     </bean>
 
     <!-- 5.使用中间类解决RedisCache.RedisTemplate的静态注入，从而使MyBatis实现第三方缓存 -->
-    <bean id="redisCacheTransfer" class="cn.xiongyu.bookstore.cache.RedisCacheTransfer">
+    <bean id="redisCacheTransfer" class="cn.xiongyu.bookstore.common.cache.RedisCacheTransfer">
         <property name="redisTemplate" ref="redisTemplate"/>
+    </bean>
+    <!-- 配置spring-session -->
+    <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+        <property name="maxInactiveIntervalInSeconds" value="1800"/>
     </bean>
 </beans>

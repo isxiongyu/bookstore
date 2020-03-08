@@ -13,6 +13,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<package name="cn.xiongyu.bookstore.cart.domain"/>
 		<package name="cn.xiongyu.bookstore.order.domain"/>
 		<package name="cn.xiongyu.bookstore.admin.domain"/>
+		<package name="cn.xiongyu.bookstore.seckill.domain"/>
 	</typeAliases>
 	<mappers>
 		<package name="cn.xiongyu.bookstore.user.dao"/>
@@ -20,5 +21,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<package name="cn.xiongyu.bookstore.cart.dao"/>
 		<package name="cn.xiongyu.bookstore.order.dao"/>
 		<package name="cn.xiongyu.bookstore.admin.dao"/>
+		<package name="cn.xiongyu.bookstore.seckill.dao"/>
 	</mappers>
 </configuration>

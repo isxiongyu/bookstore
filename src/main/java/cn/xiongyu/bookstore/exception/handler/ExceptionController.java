@@ -6,25 +6,29 @@ import cn.xiongyu.bookstore.exception.*;
 import cn.xiongyu.bookstore.user.domain.User;
 import cn.xiongyu.common.beanUtils.MyBeanUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@RequestMapping("user")
-@Controller
+//@RequestMapping("user")
+@ControllerAdvice
 public class ExceptionController {
-	
+
 	
 	@Resource(name="cartService")
 	private ICartService cartService;
 	
 	
 	@ExceptionHandler(LoginException.class)
-	public ModelAndView loginExceptionResolver(Exception ex, HttpServletRequest request){
+	public ModelAndView loginExceptionResolver(LoginException ex, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("loginError", ex);
 		User user = MyBeanUtils.toBean(request.getParameterMap(), User.class);
@@ -34,7 +38,7 @@ public class ExceptionController {
 	}
 	
 	@ExceptionHandler(RegisterException.class)
-	public ModelAndView registerExceptionResolver(Exception ex, HttpServletRequest request){
+	public ModelAndView registerExceptionResolver(RegisterException ex, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("registerError", ex);
 		User user = MyBeanUtils.toBean(request.getParameterMap(), User.class);
@@ -44,14 +48,14 @@ public class ExceptionController {
 	}
 	
 	@ExceptionHandler(ActiveException.class)
-	public String activeExceptionResolver(Exception ex, HttpServletRequest request){
+	public String activeExceptionResolver(ActiveException ex, HttpServletRequest request){
 		request.setAttribute("ex", ex);
 		return "/jsps/user/msg.jsp";
 	}
 	
 	
 	@ExceptionHandler(ExceedMaxRestException.class)
-	public ModelAndView exceedMaxRestExceptionResolver(Exception ex, HttpServletRequest request){
+	public ModelAndView exceedMaxRestExceptionResolver(ExceedMaxRestException ex, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		String uid = request.getParameter("uid");
 		List<Cart> cartList = cartService.selCartByUid(uid);
@@ -63,19 +67,27 @@ public class ExceptionController {
 	}
 	
 	@ExceptionHandler(AccessPermissionException.class)
-	public String accessPermissionExceptionResolver(Exception ex, HttpServletRequest request){
+	public String accessPermissionExceptionResolver(AccessPermissionException ex, HttpServletRequest request){
 		request.setAttribute("ex", ex);
 		return "/jsps/user/login.jsp";
 	}
 	@ExceptionHandler(AdminAccessPermissionException.class)
-	public String adminAccessPermissionExceptionResolver(Exception ex, HttpServletRequest request){
+	public String adminAccessPermissionExceptionResolver(AdminAccessPermissionException ex, HttpServletRequest request){
+		System.out.println("密码错误");
 		request.setAttribute("ex", ex);
 		return "/jsps/adminLogin.jsp";
 	}
 	@ExceptionHandler(CategoryRepetitionException.class)
-	public String categoryRepetitionExceptionResolver(Exception ex, HttpServletRequest request){
+	public String categoryRepetitionExceptionResolver(CategoryRepetitionException ex, HttpServletRequest request){
 		request.setAttribute("ex", ex);
 		return "/jsps/admin/addCategory.jsp";
 	}
-	
+	@ExceptionHandler(LimitException.class)
+	@ResponseBody
+	public Map<String, Integer> limitExceptionResolver(LimitException ex) {
+		Map<String, Integer> map = new HashMap<>();
+		System.out.println(ex.getMessage());
+		map.put(ex.getMessage(), 500);
+		return map;
+	}
 }

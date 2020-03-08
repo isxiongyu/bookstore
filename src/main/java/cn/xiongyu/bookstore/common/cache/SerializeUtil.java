@@ -1,4 +1,4 @@
-package cn.xiongyu.bookstore.cache;
+package cn.xiongyu.bookstore.common.cache;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream;
 
 /**
  * ClassName: SerialiizeUtil
- * Package: cn.xiongyu.bookstore.cache
+ * Package: cn.xiongyu.bookstore.common.cache
  * Description:
  * Date: 2020/2/13 下午2:41
  * Author: xiongyu

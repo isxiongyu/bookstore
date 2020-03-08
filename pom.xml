@@ -46,7 +46,6 @@
 
     <pagehelper.version>3.7.5</pagehelper.version>
     <jsqlparser.version>0.9.1</jsqlparser.version>
-    <spring.redis.version>1.6.2.RELEASE</spring.redis.version>
   </properties>
 
   <dependencies>
@@ -61,22 +60,12 @@
       <artifactId>protostuff-runtime</artifactId>
       <version>1.0.8</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
-    <dependency>
-      <groupId>redis.clients</groupId>
-      <artifactId>jedis</artifactId>
-      <version>2.9.0</version>
-    </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.3.2</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-redis</artifactId>
-      <version>${spring.redis.version}</version>
-    </dependency>
+<!--    单元测试-->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -239,16 +228,6 @@
     </dependency>
 
     <!-- log4j日志 -->
-<!--    <dependency>-->
-<!--      <groupId>org.slf4j</groupId>-->
-<!--      <artifactId>slf4j-log4j12</artifactId>-->
-<!--      <version>${log4j.version}</version>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>commons-logging</groupId>-->
-<!--      <artifactId>commons-logging</artifactId>-->
-<!--      <version>${commons-logging.version}</version>-->
-<!--    </dependency>-->
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
@@ -259,7 +238,6 @@
       <artifactId>slf4j-log4j12</artifactId>
       <version>1.7.21</version>
     </dependency>
-
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -310,19 +288,6 @@
       <artifactId>httpclient</artifactId>
       <version>4.5.2</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.gitee.qdbp.thirdparty/ueditor -->
-    <!--<dependency>-->
-      <!--<groupId>com.gitee.qdbp.thirdparty</groupId>-->
-      <!--<artifactId>ueditor</artifactId>-->
-      <!--<version>1.4.3.3</version>-->
-    <!--</dependency>-->
-    <!-- https://mvnrepository.com/artifact/org.json/json -->
-    <!--<dependency>-->
-      <!--<groupId>org.json</groupId>-->
-      <!--<artifactId>json</artifactId>-->
-      <!--<version>20171018</version>-->
-    <!--</dependency>-->
-    <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
@@ -347,6 +312,7 @@
       <version>2.4</version>
       <classifier>jdk15</classifier>
     </dependency>
+<!--    自定义工具包-->
     <dependency>
       <groupId>cn.xiongyu</groupId>
       <artifactId>tools</artifactId>
@@ -369,6 +335,30 @@
       <artifactId>hibernate-validator</artifactId>
       <version>5.3.6.Final</version>
     </dependency>
+    <!-- guava 限流 -->
+    <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>27.0.1-jre</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.11</version><!--$NO-MVN-MAN-VER$-->
+    </dependency>
+<!--    spring session redis-->
+    <dependency>
+      <groupId>org.springframework.session</groupId>
+      <artifactId>spring-session-data-redis</artifactId>
+      <version>1.2.1.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>2.8.1</version>
+    </dependency>
+
   </dependencies>
 
   <build>

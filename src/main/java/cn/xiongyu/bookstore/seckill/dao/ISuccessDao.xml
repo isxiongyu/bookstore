@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xiongyu.bookstore.seckill.dao.ISuccessDao">
+<!--	&lt;!&ndash; 使用Redis二级缓存 &ndash;&gt;-->
+<!--	<cache type="cn.xiongyu.bookstore.common.cache.RedisCache"/>-->
+	<insert id="addSuccess">
+		insert into seckill_success(seckill_id, rest_num, state)
+		values(#{seckillId}, #{restNum}, #{state})
+	</insert>
+</mapper>

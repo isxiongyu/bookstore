@@ -1,21 +1,13 @@
-package cn.xiongyu.bookstore.cache;
+package cn.xiongyu.bookstore.common.cache;
 
 import org.apache.ibatis.cache.Cache;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
-import org.springframework.data.redis.connection.jedis.JedisConnection;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.stereotype.Component;
-import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -23,7 +15,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * ClassName: RedisCache
- * Package: cn.xiongyu.bookstore.cache
+ * Package: cn.xiongyu.bookstore.common.cache
  * Description:
  * Date: 2020/2/12 下午10:23
  * Author: xiongyu

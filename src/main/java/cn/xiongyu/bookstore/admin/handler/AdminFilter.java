@@ -18,7 +18,8 @@ public class AdminFilter implements Filter {
 			FilterChain filterChain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
-		if (request.getSession().getAttribute("admin") != null) {
+		String requestURI = request.getRequestURI();
+		if (requestURI.contains("login") || request.getSession().getAttribute("admin") != null) {
 			filterChain.doFilter(request, response);
 		}else {
 			response.sendRedirect(request.getContextPath()+"/jsps/adminLogin.jsp");

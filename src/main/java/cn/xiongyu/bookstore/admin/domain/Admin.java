@@ -1,6 +1,8 @@
 package cn.xiongyu.bookstore.admin.domain;
 
-public class Admin {
+import java.io.Serializable;
+
+public class Admin implements Serializable {
 	private int aid;
 	private String aname;
 	private String apassword;
